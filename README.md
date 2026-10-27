@@ -207,6 +207,22 @@ Depois:
 firebase deploy --only hosting
 ```
 
+### 5.1 Publicar em um VPS com EasyPanel
+
+Este projeto é estático: o EasyPanel pode servi-lo com Nginx em um único container. O [Dockerfile](Dockerfile) e o [.dockerignore](.dockerignore) na raiz já preparam a imagem; não é necessário instalar Node.js no VPS nem configurar um comando de build.
+
+1. No painel da Hostinger, confira o IPv4 do VPS e confirme que ele está ativo.
+2. No DNS do seu domínio, crie um registro **A** apontando o domínio (por exemplo, `loja.seudominio.com`) para o IPv4 do VPS. Se for usar `www`, crie outro registro para ele. Só crie registros **AAAA** se o VPS tiver IPv6 configurado.
+3. No EasyPanel, crie ou abra um projeto e escolha **New Service → App**.
+4. Em **Source**, selecione **GitHub** e conecte sua conta, se solicitado. Informe o repositório `Euligio/loja-online`, branch `main` e **Build Path** `/`.
+5. Em **Build**, selecione **Dockerfile** e use `/Dockerfile` como caminho. O arquivo está na raiz do repositório.
+6. Salve a configuração e clique em **Deploy**. A imagem serve os arquivos na porta **80**; configure essa porta como porta do serviço/domínio se o painel pedir. Não é necessário definir comando de build nem comando de inicialização.
+7. Em **Domains**, adicione o domínio que configurou no DNS, apontando para a porta **80**. Ative/aguarde o HTTPS automático do EasyPanel. A propagação do DNS pode levar algum tempo.
+8. Quando o endereço HTTPS estiver ativo, abra `https://seu-dominio/` e verifique também `/admin.html` e `/acompanhar.html`.
+9. No Firebase Console, adicione o domínio (sem `https://` nem caminhos) em **Authentication → Settings → Authorized domains**. Confira também se as regras do Firestore estão publicadas conforme o passo 3.6 e se a conta de administrador está cadastrada conforme o passo 3.5.
+
+No EasyPanel, você pode habilitar **Auto Deploy** para que novos pushes na branch `main` publiquem atualizações automaticamente. Caso contrário, faça um novo deploy manual após cada alteração.
+
 > Se usar um domínio próprio ou outra hospedagem, adicione o domínio em **Authentication → Settings → Domínios autorizados**, senão o login do admin falha. (`localhost` e os domínios `*.firebaseapp.com` / `*.web.app` já vêm autorizados.)
 >
 > Ao criar o `firebase init`, evite que ele sobrescreva o `firebase-config.js`. Ele só cria `firebase.json` e `.firebaserc`.
