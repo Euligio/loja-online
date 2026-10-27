@@ -214,8 +214,8 @@ Este projeto é estático: o EasyPanel pode servi-lo com Nginx em um único cont
 1. No painel da Hostinger, confira o IPv4 do VPS e confirme que ele está ativo.
 2. No DNS do seu domínio, crie um registro **A** apontando o domínio (por exemplo, `loja.seudominio.com`) para o IPv4 do VPS. Se for usar `www`, crie outro registro para ele. Só crie registros **AAAA** se o VPS tiver IPv6 configurado.
 3. No EasyPanel, crie ou abra um projeto e escolha **New Service → App**.
-4. Em **Source**, selecione **GitHub** e conecte sua conta, se solicitado. Informe o repositório `Euligio/loja-online`, branch `main` e **Build Path** `/`.
-5. Em **Build**, selecione **Dockerfile** e use `/Dockerfile` como caminho. O arquivo está na raiz do repositório.
+4. Em **Source**, selecione **GitHub** e conecte sua conta, se solicitado. Informe o repositório `Euligio/loja-online`, branch `main` e **Build Path** `/` (a raiz do repositório; não use `Dockerfile` como diretório).
+5. Em **Build**, selecione o builder **Dockerfile** e informe `Dockerfile` no campo do caminho do arquivo, se o painel solicitar. O contexto/diretório de build continua sendo `/`; não altere esse diretório para `/Dockerfile`.
 6. Salve a configuração e clique em **Deploy**. A imagem serve os arquivos na porta **80**; configure essa porta como porta do serviço/domínio se o painel pedir. Não é necessário definir comando de build nem comando de inicialização.
 7. Em **Domains**, adicione o domínio que configurou no DNS, apontando para a porta **80**. Ative/aguarde o HTTPS automático do EasyPanel. A propagação do DNS pode levar algum tempo.
 8. Quando o endereço HTTPS estiver ativo, abra `https://seu-dominio/` e verifique também `/admin.html` e `/acompanhar.html`.
