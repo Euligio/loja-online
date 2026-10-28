@@ -4,7 +4,7 @@ service cloud.firestore {
 
     // E-mails com acesso de administrador (cadastre o mesmo e-mail em Authentication → Users)
     function emailsAdmin() {
-      return ['rasistema25@gmail.com'];
+      return ['umpierres123@gmail.com'];
     }
 
     function isAdmin() {
