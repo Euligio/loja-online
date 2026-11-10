@@ -440,7 +440,7 @@ Observações sobre o funcionamento:
 - **iPhone / Safari:** botão Compartilhar → **Adicionar à Tela de Início**.
 - Requer HTTPS (ou `localhost`).
 - O app guarda em cache a estrutura da loja, mas **o catálogo precisa de internet**, pois vem do Firebase.
-- O favicon das páginas e o ícone de atalho do iPhone usam `icons/moa.png`. Para trocar o favicon, substitua esse arquivo mantendo o nome. Os ícones do app instalado são separados e usam `icon-180`, `icon-192`, `icon-512` e `icon-maskable-512` na pasta `icons/`; o último tem margem de segurança para o recorte redondo do Android. A cor da barra do app instalado segue `theme-color`/`manifest.webmanifest`.
+- O favicon das páginas e o ícone de atalho do iPhone usam `icons/moa.png`. Para trocar o favicon, substitua esse arquivo mantendo o nome e atualize o parâmetro de versão no endereço do ícone nos arquivos HTML. Os ícones do app instalado são separados e usam `icon-180`, `icon-192`, `icon-512` e `icon-maskable-512` na pasta `icons/`; o último tem margem de segurança para o recorte redondo do Android. A cor da barra do app instalado segue `theme-color`/`manifest.webmanifest`.
 
 ---
 
